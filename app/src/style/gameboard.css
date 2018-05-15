@@ -1,0 +1,9 @@
+.game-board {
+    margin-left: 50px;
+    margin-top: 50px;
+    width: 80%;
+    min-height: 500px;
+    height: 70%;
+    border: 1px lightblue solid;
+    align-self: center;
+  }
