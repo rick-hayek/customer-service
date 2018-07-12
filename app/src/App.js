@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
+
 import logo from './img/logo.svg';
 import './style/App.css';
-import './style/gameboard.css';
-import Clock from './scripts/clock'
+import './style/chat-history.css';
+import './style/chat-menubar.css';
+
+import ServiceBoard from './scripts/customer-service';
 
 class App extends Component {
+
   render() {
     return (
       <div className="">
         <header className="App App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Greedy Snake</h1>
+          <h1 className="App-title">Client Service</h1>
         </header>
         <div className="App-intro">
-        Game Board
         </div>
-        <div className="game-board">
-          <span className="snake-header" />
-          <Clock />
-          <table></table>
-        </div>
+
+        <ServiceBoard />
       </div>
     );
   }
