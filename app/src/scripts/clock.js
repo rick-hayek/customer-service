@@ -23,7 +23,7 @@ export default class Clock extends Component{
     render(){
         return (
             <div>
-                <h1>Clock: {this.state.now.toLocaleTimeString()}</h1>
+                <h4 style={{float: 'right'}}>{this.state.now.toLocaleTimeString()}</h4>
             </div>
         );
     }

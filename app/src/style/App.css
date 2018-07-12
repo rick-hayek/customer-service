@@ -1,3 +1,10 @@
+
+body  {
+  overflow: hidden;
+}
+#root {
+  overflow: hidden;
+}
 .App {
   text-align: center;
 }

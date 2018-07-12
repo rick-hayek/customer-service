@@ -1,0 +1,12 @@
+.chat-board {
+    position: relative;
+    margin-left: 2px;
+    margin-right: 1px;
+    margin-top: 10px;
+    /* padding-right: 2px; */
+    width: 99%;
+    min-height: 400px;
+    height: 70%;
+    border: 1px gray solid;
+    align-self: center;
+  }
