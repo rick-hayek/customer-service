@@ -1,12 +1,173 @@
-.chat-board {
-    position: relative;
-    margin-left: 2px;
-    margin-right: 1px;
-    margin-top: 10px;
-    /* padding-right: 2px; */
-    width: 99%;
-    min-height: 400px;
-    height: 70%;
-    border: 1px gray solid;
-    align-self: center;
-  }
+.chat-container {
+  min-width: 320px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.chat-history {
+  height: 100%;
+  width: 99%;
+  overflow-y: scroll;
+  padding-right: 17px;
+  box-sizing: content-box;
+  margin-left: 2px;
+  margin-right: 1px;
+  margin-top: 10px;
+  min-height: 420px;
+  max-height: 420px;
+  height: 70%;
+  border: 1px lightgray solid;
+  align-self: center;
+  background-color: whitesmoke;
+}
+
+.chat-history ul {
+  list-style-type: none;
+  width: 100%;
+  overflow: hidden;
+  padding-left: 10px;
+  box-sizing: content-box;
+}
+
+.chat-history ul li {
+  overflow: hidden;
+  list-style-type: none;
+  width: 100%;
+}
+
+.message-container-response {
+  width: 100%;
+}
+
+.message-container-response img {
+  margin-right: 10px;
+}
+
+.message-container-request {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.message-sender-request {
+  position: relative;
+}
+
+.message-sender-request::before {
+  content: "";
+  display: block;
+  width: 0; 
+  height: 0; 
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 8px solid lightgreen; 
+  position: absolute;
+  top: 16px;
+  left: -1px;
+}
+
+.message-container-request img {
+  margin-left: 10px;
+}
+
+.message-sender {
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin-top: 12px;
+}
+
+.message-content {
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  border-radius: 5px;
+  max-width: 80%;
+  margin-top: 10px;
+  padding: 5px;
+  position: relative;
+}
+
+.message-request {
+  float: right;
+  background-color: lightgreen;
+}
+
+.message-response {
+  float: left;
+  background-color: white;
+}
+
+.message-response::before {
+  content: "";
+  display: block;
+  width: 0; 
+  height: 0; 
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 8px solid white; 
+  position: absolute;
+  top: 6px;
+  left: -7px;
+}
+
+.request-container {
+  margin-top: 5px;
+  height: 34px;
+  position: relative;
+}
+
+.text-command {
+  float: right;
+  height: 30px;
+  width: calc(100% - 35px);
+}
+
+.text-command input {
+  margin-left: 5px;
+  margin-top: 3px;
+}
+
+.text-content {
+  min-width: 200px;
+  width: calc(100% - 70px);
+  border: 1px solid lightgray;
+}
+
+.text-submit {
+  float: right;
+  margin-right: 5px;
+  width: 50px;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+}
+
+.menu-command {
+  float: right;
+  width: calc(100% - 35px);
+  margin-right: 5px;
+}
+
+.menu-command div{
+  width: 33.3%;
+  float: left;
+}
+
+.menu-command div > button {
+  width: 100%;
+  min-width: 0 !important;
+  text-overflow: clip;
+  overflow: hidden;
+}
+
+.menu-command div > ul {
+  width: 100%;
+  min-width: 0 !important;
+  text-overflow: clip;
+  overflow: hidden;
+}
+
+.plain-button {
+  margin-left: 5px;
+}
