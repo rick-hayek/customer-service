@@ -35,7 +35,7 @@ const ShuttleBusesDetail=[
     { id: 4, value: '徐汇线', extra: '2', detail: '闵行 上海南站 宜山路' },
     { id: 5, value: '杨浦线', detail: '闵行 杨浦' },
     { id: 6, value: '宝山线', detail: '闵行 宝山' },
-    { id: 99, value: 'All Lines', detail: 'All' }
+    { id: 99, value: 'All Lines', detail: 'All', link: '/detail' }
 ];
 
 const PreDefinedResponses = [
@@ -69,7 +69,7 @@ export default class ServiceBoard extends Component{
     constructor(props){
         super(props);
         this.state = {
-            messages:[],
+            messages: [],
             requestType: RequestType.command,
             cmdImg: keyboardImg, 
         };
@@ -224,6 +224,10 @@ class ServiceResponse extends Component{
                     else {
                         details = ': ' + msg.content.detail;
                     }
+
+                    if(!!msg.content.link){
+                        details = (<text>: <a href={msg.content.link}> {msg.content.detail}</a> </text> );
+                    }
                 }
 
                 return (
@@ -246,7 +250,6 @@ class ServiceResponse extends Component{
             });
 
         return(
-            // <div style={{position: 'absolute', bottom: 0}} >{msgs}</div>
             <ul >{msgs}</ul>
         );
     }
