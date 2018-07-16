@@ -7,6 +7,7 @@ import './style/chat-history.css';
 
 import ServiceBoard from './scripts/customer-service';
 import ResponseDetail from './scripts/response-detail';
+import UserCenter from './scripts/user-center.js';
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
           {/* <Route exact path='/' component={ServiceBoard} /> */}
           <Route exact path='/' render={()=><ServiceBoard />} />
           <Route path='/detail' component={ResponseDetail} />
+          <Route path='/user' component={UserCenter} />
         </Switch>
       </div>
     );

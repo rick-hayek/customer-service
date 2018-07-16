@@ -4,7 +4,7 @@ const ResponseDetail = ()=>{
     
     return (
     <div>
-        <button onClick={()=>{window.history.back();}}>Go Back</button>
+        <button onClick={()=>{window.history.back();}}>Go Back!</button>
     </div>
 )}
 

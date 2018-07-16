@@ -1,65 +1,19 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { Button, DropdownButton, MenuItem, ButtonToolbar, Image } from 'react-bootstrap';
 //import Clock from './clock';
 import PropTypes from 'prop-types';
 import '../style/chat-history.css';
-import {MessageType, MessageOwner, RequestType} from './enums'
+import {CommondType, MessageOwner, RequestType, MenuType} from './enums'
 
 import keyboardImg from '../img/keyboard_grey_192x192.png';
 import cmdImg from '../img/mobile_menu_icon_256x256.png';
 import userIcon from '../img/user_512x512.png';
 import logo from '../img/support_512.png';
 
-// Sample data
-const ShuttleBuses=[
-    { id: 1, value: '张江线' },
-    { id: 2, value: '辛庄线' },
-    { id: 3, value: '徐汇线', extra: '1' },
-    { id: 4, value: '徐汇线', extra: '2' },
-    { id: 5, value: '杨浦线' },
-    { id: 6, value: '宝山线' },
-    { id: 0, value: 'divider', isDivider: true },
-    { id: 99, value: 'All Lines' }
-];
-
-const MainMenus = [
-    { id:1, name:'我的班车', type:1, items: [{id: 2, value: '辛庄线'}] }, 
-    { id:2, name:'班车线路', type:1, items: ShuttleBuses }, 
-    { id:3, name:'个人中心', type:0 }
-];
-
-const ShuttleBusesDetail=[
-    { id: 1, value: '张江线', detail: '闵行 浦江 张江' },
-    { id: 2, value: '辛庄线', detail: '闵行 莲花路 辛庄' },
-    { id: 3, value: '徐汇线', extra: '1', detail: '闵行 上海南站 徐家汇' },
-    { id: 4, value: '徐汇线', extra: '2', detail: '闵行 上海南站 宜山路' },
-    { id: 5, value: '杨浦线', detail: '闵行 杨浦' },
-    { id: 6, value: '宝山线', detail: '闵行 宝山' },
-    { id: 99, value: 'All Lines', detail: 'All', link: '/detail' }
-];
-
-const PreDefinedResponses = [
-    { id: 1, value: '1', detail: '公告', link: '' },
-    { id: 2, value: '2', detail: '班车信息', link: '' },
-    { id: 3, value: '3', detail: '乘车指南', link: '' },
-    { id: 4, value: '4', detail: '帮助', link: '' },
-    { id: 5, value: '5', detail: '失物找回', link: '' },
-];
-
-const DefaultResponse = {
-    id: 0, 
-    value: 'Available Services', 
-    list: [
-        {id: 1, value: '1.', detail: '公告'},
-        {id: 2, value: '2.', detail: '班车信息'},
-        {id: 3, value: '3.', detail: '乘车指南'},
-        {id: 4, value: '4.', detail: '帮助'},
-        {id: 5, value: '5.', detail: '失物找回'},
-    ]
-};
+import { ShuttleBuses, MainMenus, PreDefinedMenuResponses, PreDefinedTextResponses, DefaultTextResponse } from './demo-data';
 
 function Message(){
-    this.type = MessageType.text; 
+    this.type = CommondType.text; 
     this.owner = MessageOwner.client;
     this.content = undefined; // shuttle bus object
     this.timeStamp = Date.now();
@@ -79,9 +33,15 @@ export default class ServiceBoard extends Component{
         var msg = new Message();
         msg.type = type;
         msg.owner = MessageOwner.client;
-        if(type === MessageType.text){
-            msg.content = {};
-            msg.content.value = req;
+        if(type === CommondType.text){
+            // if(req === '2'){ ====> Should handle this in response
+            //     this.sendRequest(ShuttleBuses[7], CommondType.command);
+            //     return;
+            // }
+            // else{
+                msg.content = {};
+                msg.content.value = req;
+            // }
         }
         else{
             msg.content = req;
@@ -164,19 +124,19 @@ class ServiceResponse extends Component{
                 var response = new Message();
                 response.owner = MessageOwner.server;
                 var content = undefined;
-                if(last.type === MessageType.command)
+                if(last.type === CommondType.command)
                 {
-                    content = ShuttleBusesDetail.find((bus, i)=>{
-                        return (bus.value === last.content.value) && (bus.extra === last.content.extra);
+                    content = PreDefinedMenuResponses.find((bus, i)=>{
+                        return (bus.value === last.content.value);
                     });
                 }
-                else if(last.type === MessageType.text){
-                    content = PreDefinedResponses.find((s)=>{
+                else if(last.type === CommondType.text){
+                    content = PreDefinedTextResponses.find((s)=>{
                         return s.value === last.content.value;
                     });
 
                     if(content === undefined){
-                        content = DefaultResponse;
+                        content = DefaultTextResponse;
                     }
                 }
 
@@ -238,7 +198,6 @@ class ServiceResponse extends Component{
                             </div>
                             <div className={`message-content ${contentClass}`}>
                                 {msg.content.value} 
-                                {msg.content.extra} 
                                 {details}
                             </div>
 
@@ -290,7 +249,7 @@ class TextCommand extends Component{
 
     sendRequest(e) {
         if(!!this.state.message){
-            this.props.onRequestSent(this.state.message, MessageType.text);
+            this.props.onRequestSent(this.state.message, CommondType.text);
             
             // Clear text
             document.getElementById('__userRequestTextContent').value = '';
@@ -327,7 +286,7 @@ class MenuCommand extends Component{
     }
 
     sendRequest(req){
-        this.props.onRequestSent(req, MessageType.command);
+        this.props.onRequestSent(req, CommondType.command);
     }
 
     render(){ 
@@ -335,17 +294,25 @@ class MenuCommand extends Component{
         if(!!this.props.sender){
             menus = this.props.sender.map((m, i)=> {
                 var items = undefined;
-                if(!!m.items)
+                if(!!m.value && m.type === MenuType.menu)
                 {
-                    items = m.items.map((cmd, k)=> { 
+                    items = m.value.map((cmd, k)=> { 
                         return cmd.isDivider
                             ? <MenuItem key={cmd.id} divider />
-                            : <MenuItem key={cmd.id} onSelect={this.sendRequest.bind(this, cmd)} eventKey={cmd.id}>{cmd.value} {cmd.extra}</MenuItem>;
+                            : <MenuItem key={cmd.id} onSelect={this.sendRequest.bind(this, cmd)} eventKey={cmd.id}>{cmd.value}</MenuItem>;
                     });
                 }
 
-                return m.type === 0 || !m.items
-                ? (<div key={'aaa'} className="plain-button"><Button title={m.name} key={m.name+i} id={m.name+i}>{m.name}</Button></div>)
+                return m.type === MenuType.link
+                ? (<div key={'aaa'} className="plain-button">
+                    <Button 
+                        title={m.name} 
+                        key={m.name+i} 
+                        id={m.name+i} 
+                        onClick={()=>{window.location=m.value;}}>
+                            {m.name}
+                    </Button>
+                </div>)
                 : (
                     <DropdownButton
                         bsStyle='default'
@@ -353,7 +320,7 @@ class MenuCommand extends Component{
                         key={m.name+i}
                         id={m.name+i}
                         dropup={true}
-                        // noCaret={!m.items}
+                        // noCaret={!m.value}
                     >
                         {items}
                     </DropdownButton>
