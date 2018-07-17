@@ -7,7 +7,8 @@ import './style/chat-history.css';
 
 import ServiceBoard from './scripts/customer-service';
 import ResponseDetail from './scripts/response-detail';
-import UserCenter from './scripts/user-center.js';
+import UserCenter from './scripts/user-center';
+import ShuttleDetail from './scripts/shuttles-detail';
 
 class App extends Component {
 
@@ -21,12 +22,13 @@ class App extends Component {
         <div className="App-intro">
         </div>
 
-        <Switch>
+        {/* <Switch> */}
           {/* <Route exact path='/' component={ServiceBoard} /> */}
           <Route exact path='/' render={()=><ServiceBoard />} />
           <Route path='/detail' component={ResponseDetail} />
           <Route path='/user' component={UserCenter} />
-        </Switch>
+          <Route path='/shuttles' component={ShuttleDetail} />
+        {/* </Switch> */}
       </div>
     );
   }
