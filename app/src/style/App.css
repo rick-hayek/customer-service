@@ -37,6 +37,23 @@ body  {
   to { transform: rotate(360deg); }
 }
 
+.user-center {
+  /* height: 100%; */
+  /* width: 100%; */
+  overflow: hidden;
+  /* overflow-y: scroll; */
+  /* padding-right: 17px; */
+  box-sizing: content-box;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: 10px;
+  min-height: calc(100vh - 76px);
+  max-height: calc(100vh - 76px);
+  border: 1px lightgray solid;
+  align-self: center;
+  background-color: whitesmoke;
+}
+
 .user-center a {
   margin-left: 10px;
   margin-right: 10px;
@@ -48,4 +65,8 @@ body  {
 .user-center a:hover
 {
     text-decoration:none;
+}
+
+.clickable {
+  cursor: pointer;
 }
