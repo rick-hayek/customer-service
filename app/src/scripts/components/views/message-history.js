@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { Image } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 // import '../style/chat-history.css';
 import {CommondType, MessageOwner, MessageType} from '../../../models/enums'; 
 import userIcon from '../../../img/user_512x512.png';
@@ -10,9 +10,9 @@ import supportIcon from '../../../img/support_512.png';
 
 import { PreDefinedMenuResponses, PreDefinedTextResponses, DefaultTextResponse } from '../../demo-data'; //'./demo-data';
 
-import {connect} from 'react-redux';
-import store from '../../../redux-store'; //  '../../redux-store';
-import { changeShuttle } from '../../actions';// './actions';
+// import {connect} from 'react-redux';
+// import store from '../../../redux-store'; 
+// import { changeShuttle } from '../../actions'; 
 
 import Message from '../../../models';
 
@@ -72,11 +72,14 @@ class MessageHistory extends Component{
 
                 var self = this;
                 setTimeout(function(){
-                    messages.push(response);
-                    len++;
-                    self.setState({
-                        messageCount: len
-                    });
+                    try{
+                        messages.push(response);
+                        len++;
+                        self.setState({
+                            messageCount: len
+                        });
+                    }
+                    catch(err){ }
                 }, 1000);
             }
 
@@ -143,7 +146,6 @@ class MessageHistory extends Component{
                                 <Link id={busId} onClick={(e)=>{e.stopPropagation();}} to={msg.content.pageUrl} >Read More <i className="readmore arrow-right"></i></Link>
                             </div>);
                         gotoDetails = ()=>{
-                            store.dispatch(changeShuttle({id: busId, name: title}));
                             document.getElementById(busId).click();
                         };
                     }
@@ -171,15 +173,4 @@ class MessageHistory extends Component{
     }
 }
 
-MessageHistory.propTypes = {
-    shuttle: PropTypes.object
-}
-
-
-const mapStateToProps = store => {
-    return {
-        shuttle: store.shuttle
-    };
-};
-
-export default connect(mapStateToProps)(MessageHistory);
+export default MessageHistory;
