@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+// import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import logo from './img/logo.svg';
 import './style/App.css';
@@ -23,8 +24,8 @@ class App extends Component {
         </div>
 
         {/* <Switch> */}
-          {/* <Route exact path='/' component={ServiceBoard} /> */}
-          <Route exact path='/' render={()=><ServiceBoard />} />
+          <Route exact path='/' component={ServiceBoard} />
+          {/* <Route exact path='/' render={()=><ServiceBoard />} /> */}
           <Route path='/detail' component={ResponseDetail} />
           <Route path='/user' component={UserCenter} />
           <Route path='/shuttles' component={ShuttleDetail} />

@@ -1,13 +1,11 @@
 import React from 'react';
-// import {Link} from 'react-router-dom';
+//import store from '../redux-store';
 
 const ShuttleDetail = ()=>{
-    
     return (
     <div className={'user-center'}>
         <a onClick={()=>{window.history.back();}}>&lt; Go Back</a>
-        {/* <Link to="/">&lt; Go Back</Link> */}
-        <div>This is line detail page</div>
+        <div>This is line detail page  </div>
     </div>
 )}
 
