@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 // import '../../../style/chat-history.css';
-import { CommondType } from '../../../models/enums'; // ' ../models/enums'
+import { CommondType } from '../../../models/enums'; 
 
 export default class TextCommand extends Component{
     constructor(props){
