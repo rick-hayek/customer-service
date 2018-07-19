@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
 const ButtonLink = (props)=> {
-    const {title,  btnId, linkId, to, text, ...rest} = props;
+    const {linkId, to, text, title,  btnId} = props;
+    //const {linkId, to, text, title,  btnId, ...rest} = props;
 
     return (
         <Button 
