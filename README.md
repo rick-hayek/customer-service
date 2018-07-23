@@ -1,37 +1,39 @@
-## Welcome to GitHub Pages
+## Cusotmer Service Window - A React Sample
 
-You can use the [editor on GitHub](https://github.com/rick-hayek/game/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This is a sample demostratrion using ReactJS. It also levelages react-router for client routing, and react-redux for state transition. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### Run this sample
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
+1. Clone code: 
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+git clone https://github.com/rick-hayek/customer-service.git
+```
+2. In terminal, go to app folder (assume you are cloning code in Home directory): 
+```markdown
+cd ~/customer-service/app
+```
+3. Install dependency packages: 
+```markdown
+npm install
+```
+4. Build: 
+```markdown
+npm run build
+```
+5. Run: 
+```markdown
+npm start
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+### References
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/rick-hayek/game/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+- ReactJS: https://reactjs.org/
+- React Bootstrap: https://react-bootstrap.github.io/
+- Redux: https://redux.js.org/
+- React-Router: [React training](https://reacttraining.com/); https://www.npmjs.com/package/react-router
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Contact [me](mailto:huangjiadong@msn.com) for any question.
